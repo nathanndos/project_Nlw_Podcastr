@@ -1,0 +1,22 @@
+.headerContainer{
+  background: var(--white); // cor do fundo com variavel
+  height: 6.5rem; //altura do header
+
+  display: flex; // remove o bloco dos itens, possibilitando ficar na mesma linha
+  align-items: center; // alinhar os itens do display
+
+  padding: 1rem 4rem; //espaço interno
+
+  border-bottom: 1px solid var(--gray-100);
+
+  p{
+    margin-left: 3rem;
+    padding: 0.25rem 0 0.25rem 2rem;
+    border-left: 1px solid var(--gray-100);
+  }
+  span{
+    margin-left: auto; //faz margin-left com toda a margem disponivel
+    text-transform: capitalize; //primeira letra sempre maiuscula
+  }
+}
+
