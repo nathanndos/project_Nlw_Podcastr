@@ -33,7 +33,7 @@ export function Player(){
           <button type="button">
              <img src="/play.svg" alt="Tocar"/>
           </button>
-          <button type="32button">
+          <button type="button">
              <img src="/play-next.svg" alt="Tocar próxima"/>
           </button>
           <button type="button">
