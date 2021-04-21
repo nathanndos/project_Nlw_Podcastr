@@ -1,0 +1,46 @@
+.playerContainer{
+  padding: 3rem 4rem;//controla o espaço interno, logo tambem controla o tamanho do botao
+  width: 24.5rem;
+  height: 100vh;// vh = viewport hight ->100% da altura da tela
+
+  background: var(--purple-500);
+  color:var(--white);
+
+  display: flex;
+  flex-direction: column;//define qual eixo os itens flexiveis irão aceitar
+  align-items: center;
+  justify-content: space-between;//justifica os itens deixando um em cada extremidade e outro no centro
+
+  header{
+    display: flex;
+    align-items: center;
+    gap:1rem;//possibilita que todo elemento dentro do header tenha um espaçemento de 16px entre eles
+  }
+  strong{
+    font-family: Lexend,sans-serif;
+    font-weight: 500;//grossura da fonte
+  }
+
+}
+.emptyPlayer{
+  width: 100%;
+  height: 20rem;
+  border:1.5px dashed var(--purple-300);
+  border-radius: 1.5rem;
+  background: linear-gradient(143.8deg, rgba(145, 100, 250, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+  //gradient ->(qnt. de "degraus",cor inicial/porcetagem, cor final/porcentagem)
+  padding: 4rem;
+  text-align: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.progress{
+  display: flex;
+  align-items: center;
+  gap:1rem;
+  font-size: 0.875rem;
+}
