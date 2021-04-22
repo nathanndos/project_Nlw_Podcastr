@@ -1,5 +1,5 @@
 import format from 'date-fns/format' // possibilita formatação da date
-import ptBR from 'date-fns/locale/pt-BR'
+import ptBR from 'date-fns/locale/pt-BR'//importa o idioma portugues do brasil 
 
 import styles from './styles.module.scss'
 
