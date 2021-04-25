@@ -10,11 +10,14 @@
     // Caso o height passe o valor estipulado a barra irá aparecer
 
   h2{
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     margin-bottom: 1.5rem;
   }
 }
 .lastEpisodes{
+  h2{
+    margin-top: .5rem;
+  }
   ul{
     list-style: none;//Remove as sinalizções de lista
     display: grid;// Estilo de grid, possibilita alterações na vertical e horizontal
@@ -104,6 +107,65 @@
         img{
           width: 1.5rem;
           height: 1.5rem;
+        }
+        &:hover{
+          filter:brightness(90%)
+        }
+      }
+    }
+  }
+}
+
+.allEpisodes{
+  padding-bottom: 2rem;
+
+  table{
+    width: 100%;
+
+    th, td{
+      padding: 0.75rem .2rem;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    th{
+      color: var(--gray-200);
+      text-transform: uppercase; //Letras maiuculas
+      font: 500 0.6rem Lexend, sans-serif;//grossura tamanho estilo estilo secundario
+      text-align: left;
+    }
+
+    td{
+      font-size:  0.65em;
+      
+      img{
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 0.5rem;
+      }
+      a{
+        color: var(--gray-800);
+        font-family: Lexend, sans-serif;
+        font-weight: 600;
+        text-decoration: none;
+        line-height: 1.4rem;
+        font-size: .675rem;
+
+        &:hover{
+          text-decoration: underline;
+        }
+      }
+      button{
+        width: 2rem;
+        height: 2rem;
+        background: var(--white);
+        border:1px solid var(--gray-100);
+        border-radius: 0.5rem;
+        font-size: 0;//sempre que for um botao somente com uma imagem é interessante
+        //reiniciar o tamanho dele
+
+        img{
+          width: 1rem;
+          height: 1rem;
+
         }
         &:hover{
           filter:brightness(90%)

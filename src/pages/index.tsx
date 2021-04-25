@@ -1,6 +1,9 @@
 import {GetStaticProps} from 'next'
 import Image from 'next/image';
 //Possibilita redimensionar a imagem, a partir de largura e altura
+import Link from 'next/link'
+//Auxilia o react no SPA, fazendo com que seja carregado na tela somente
+//itens novos, e não os ja existentes na tela
 import {format, parseISO} from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 //Importa o idioma pt-br
@@ -46,7 +49,9 @@ export default function Home({lastEpisodes, allEpisodes}: HomeProps) {
                   />
 
                 <div className={styles.episodeDetails}>
-                  <a href="">{episode.title}</a>
+                  <Link href={`/episodes/${episode.id}`}>
+                    <a>{episode.title}</a>
+                  </Link>
                   <p>{episode.members}</p>
                   <span>{episode.publishedAt}</span>
                   <span>{episode.durationAsString}</span>
@@ -63,23 +68,67 @@ export default function Home({lastEpisodes, allEpisodes}: HomeProps) {
       </section>
 
       <section className={styles.allEpisodes}>
+        <h2>Todos os episódios</h2>
+
+        <table cellSpacing={5} >
+          <thead> 
+            <tr>
+              <th></th>
+              <th>Podcast</th>
+              <th>Integrantes</th>
+              <th>Data</th>
+              <th>Duração</th>
+            </tr>
+          </thead>
+          <tbody>
+            {allEpisodes.map(episode =>{
+              return (
+                <tr key ={episode.id}>
+                  <td style={{width:72}}>
+                    <Image
+                    width={120}
+                    height = {120}
+                    src = {episode.thumbnail}
+                    objectFit = "cover"
+                    />
+                  </td>
+                  <td>
+                    <Link href ={`/episodes/${episode.id}`} >
+                      <a >{episode.title}</a>
+                    </Link>
+                  </td>
+                  <td>{episode.members}</td>
+                  <td style={{width:90}}>{episode.publishedAt}</td>
+                  <td>{episode.durationAsString}</td>
+                  <td>
+                    <button type="button">
+                      <img src="/play-green.svg" alt ="Tocar episodio"/>
+                    </button>
+                  </td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
 
       </section>
     </div>
   )
 }
 
-//Section é parecido com a div, no entanto o section cria uma seção generica, onde
+//**Section** é parecido com a div, no entanto o section cria uma seção generica, onde
 //todos itens seguem o mesmo tema, além de receberem um titulo
 
-//O argumento 'key' sempre deve ser passado quando é utilizado o map, pois caso
+//**Key **O argumento sempre deve ser passado quando é utilizado o map, pois caso
 //seja realizado alguma alteração das informações no react, ele irá recriar tudo
 //do zero
 
 //É interessante carregar a imagem no Image 3x maior para nao ficar pixelada
-// ObjectFit é umas das propriedades do Image, e possui varias tipos
+// **ObjectFit** é umas das propriedades do Image, e possui varias tipos
 // - Conver: Cobre o espaço destinado à imagem sem distorcer
 // - Contain: Nao distorce, mas diminui o tamanho da imagem para caber no esçaço
+
+//**Thead** é uma tag do table que agrupa o conteceu do header
 
 export const getStaticProps: GetStaticProps = async () =>{
   //Depois que foi trocado fetch pelo axios, o codigo ficou mais limpo e mais facil
