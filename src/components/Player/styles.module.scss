@@ -1,5 +1,5 @@
 .playerContainer{
-  padding: 1.5rem 2.8rem;//controla o espaço interno, logo tambem controla o tamanho do botao
+  padding: 2rem 2.8rem;//controla o espaço interno, logo tambem controla o tamanho do botao
   width: 21rem;
   height: 100vh;// vh = viewport hight ->100% da altura da tela
 
@@ -48,7 +48,6 @@
   .currentEpisode{
     text-align: center;
     
-
     img{
      // width: 12rem;
       border-radius: 1.5rem;
@@ -116,6 +115,7 @@
    }
 }    
   .buttons{
+    
     display: flex;
     align-items: center;
     justify-content: center;
