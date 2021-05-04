@@ -3,33 +3,15 @@ import '../styles/global.scss'
 import { Header } from '../components/Header'
 import { Player } from '../components/Player'
 
-
 import styles from '../styles/app.module.scss'
 import { PlayerContext } from '../contexts/PlayerContext'
 import { useState } from 'react'
+import {PlayerContextProvider} from '../contexts/PlayerContext'
 
 function MyApp({ Component, pageProps }) {//O app é executada em todas as chamadas realiadas
 
-  const [episodeList, setEpisodeList] = useState([]);
-  const [currectEpisodeIndex, setCurrentEpisode] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  function play(episode){
-    setEpisodeList([episode]);
-    setCurrentEpisode(0);
-    setIsPlaying(true);
-  }
-  function togglePlay(){
-    setIsPlaying(!isPlaying);
-  }
-
-  function setPlayingState(state:boolean){
-    setIsPlaying(state);
-  }
-
-
-  return (
-    <PlayerContext.Provider value={{episodeList, currectEpisodeIndex, play, isPlaying, togglePlay, setPlayingState}}>
+  return(
+    <PlayerContextProvider>
       <div className={styles.wrapper}>
         <main>
           <Header/>
@@ -37,7 +19,8 @@ function MyApp({ Component, pageProps }) {//O app é executada em todas as chama
         </main>
         <Player/>
       </div>
-    </PlayerContext.Provider>
+    </PlayerContextProvider>
+
   )
 }
 //Por isso o Header fica aqui, pois em todas as abas o header estará presete
