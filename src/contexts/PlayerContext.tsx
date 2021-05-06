@@ -15,6 +15,9 @@ type PlayerContextData = {
   currectEpisodeIndex: number;
   isPlaying: boolean;
   play: (episode: Episode) => void;
+  playList:(list: Episode[], index: number) =>void;
+  playNext:()=> void;
+  playPrevious: () =>void;
   setPlayingState:(state: boolean) =>void;
   togglePlay:() =>void;
 }
@@ -22,16 +25,21 @@ export const PlayerContext  = createContext({} as PlayerContextData)
 
 type PlayerContextProviderProps = {
   children : ReactNode;
-}
+}//reactNode ->qualkquer conteudo que o react aceitaria
 
 export function PlayerContextProvider({children}:PlayerContextProviderProps){
   const [episodeList, setEpisodeList] = useState([]);
-  const [currectEpisodeIndex, setCurrentEpisode] = useState(0);
+  const [currectEpisodeIndex, setCurrentEpisodeIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
 
   function play(episode: Episode){
     setEpisodeList([episode]);
-    setCurrentEpisode(0);
+    setCurrentEpisodeIndex(0);
+    setIsPlaying(true);
+  }
+  function playList(list: Episode[], index: number){
+    setEpisodeList(list);
+    setCurrentEpisodeIndex(index);
     setIsPlaying(true);
   }
   function togglePlay(){
@@ -42,11 +50,32 @@ export function PlayerContextProvider({children}:PlayerContextProviderProps){
     setIsPlaying(state);
   }
 
+  const hasPrevious = currectEpisodeIndex >0;
+  const hasnext = 
+
+  function playNext(){
+    const nextEpisodeIndex = currectEpisodeIndex + 1;
+
+    if(nextEpisodeIndex < episodeList.length){
+      setCurrentEpisodeIndex(currectEpisodeIndex + 1);
+    }
+  }
+
+  function playPrevious(){
+    if(currectEpisodeIndex >0){
+      setCurrentEpisodeIndex(currectEpisodeIndex - 1);
+    }
+  }
+
+
   return (
     <PlayerContext.Provider 
       value={{episodeList, 
       currectEpisodeIndex, 
       play, 
+      playList,
+      playNext,
+      playPrevious,
       isPlaying, 
       togglePlay, 
       setPlayingState}}>
