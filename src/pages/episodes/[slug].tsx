@@ -7,6 +7,8 @@ import { api } from '../../services/api';
 import Link from 'next/link'
 import { convertDurantionToTimeString } from '../../utils/convertDurationToTimeString';
 import styles from './episode.module.scss';
+import { useContext } from 'react';
+import { PlayerContext, usePlayer } from '../../contexts/PlayerContext';
 //Este arquivo possibilita criar rotas com o nome dos eps como id
 //
 
@@ -29,6 +31,8 @@ type EpisodeProps = {
 export default function Episode({episode}: EpisodeProps){
   const router = useRouter();
 
+  const { play } = usePlayer()
+
   return(
     <div className ={styles.episode}>
       <div className={styles.thumbnailContainer}>
@@ -43,7 +47,7 @@ export default function Episode({episode}: EpisodeProps){
           src = {episode.thumbnail}
           objectFit = "cover"
         />
-        <button type = "button">
+        <button type = "button" onClick={() =>play(episode)}>
         <img src = "/play.svg" alt = "Tocar episodio"/>
       </button>
       </div>

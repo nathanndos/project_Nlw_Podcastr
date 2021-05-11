@@ -41,7 +41,7 @@
             ->start: alinha a box ao topo das demais, porem utiliza somente o espaço necessario 
             ->end: alinha a box ao centro das demais, porem utiliza somente o espaço necessario 
             alinha a box ao bottom das demais, porem utiliza somente o espaço necessario*/
-    &.empty{
+    &.empty .progress{
       opacity: 0.5;
     }
   }
@@ -137,6 +137,12 @@
 
       &:hover:not(:disabled){//passar o mouse pro cima e NAO estar DESABILITADO
           filter: brightness(0.8);
+      }
+      &.isActive{
+        filter: invert(0.35) sepia(1) saturate(3) hue-rotate(100deg)
+      }
+      &.isActive:hover{
+        filter: brightness(0.6) invert(0.35) sepia(1) saturate(3) hue-rotate(100deg)
       }
       &.playButton{
         width: 3rem;
