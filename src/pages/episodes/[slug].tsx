@@ -1,5 +1,6 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Image from 'next/image';
+import Head from 'next/head';
 import ptBR from 'date-fns/locale/pt-BR';
 import {format, parseISO} from 'date-fns';
 import {useRouter} from 'next/router';
@@ -8,7 +9,7 @@ import Link from 'next/link'
 import { convertDurantionToTimeString } from '../../utils/convertDurationToTimeString';
 import styles from './episode.module.scss';
 import { useContext } from 'react';
-import { PlayerContext, usePlayer } from '../../contexts/PlayerContext';
+import {usePlayer } from '../../contexts/PlayerContext';
 //Este arquivo possibilita criar rotas com o nome dos eps como id
 //
 
@@ -29,12 +30,13 @@ type EpisodeProps = {
 }
 
 export default function Episode({episode}: EpisodeProps){
-  const router = useRouter();
-
   const { play } = usePlayer()
 
   return(
     <div className ={styles.episode}>
+    <Head>
+      <title>{episode.title}</title>
+    </Head>
       <div className={styles.thumbnailContainer}>
         <Link href="/">
           <button type = "button">
@@ -69,7 +71,6 @@ export default function Episode({episode}: EpisodeProps){
 }
 
 export const getStaticPaths: GetStaticPaths = async () =>{
-
   const { data } = await api.get('episodes',{
     params:{
       _limit:2,
@@ -86,13 +87,11 @@ export const getStaticPaths: GetStaticPaths = async () =>{
   })
   return{
     paths,
-    fallback: 'blocking'
-    
+    fallback: 'blocking'  
   }
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) =>{
-
   const { slug } = ctx.params;
 
   const { data } = await api.get(`/episodes/${slug}`)

@@ -1,5 +1,6 @@
 import {GetStaticProps} from 'next'
 import Image from 'next/image';
+import Head from 'next/head';
 //Possibilita redimensionar a imagem, a partir de largura e altura
 import Link from 'next/link'
 //Auxilia o react no SPA, fazendo com que seja carregado na tela somente
@@ -38,6 +39,10 @@ export default function Home({lastEpisodes, allEpisodes}: HomeProps) {
   //ver criterio de imutabilidade
   return (
     <div className ={styles.homePage}>
+       <Head>
+        <title>Home | Postcastr</title>
+      </Head>
+     
       <section className={styles.lastEpisodes}> 
         <h2>Últimos podcasts</h2>
         <ul>
